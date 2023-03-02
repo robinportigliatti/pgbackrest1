@@ -110,4 +110,8 @@ Puis on modifie le port d'écoute de notre secondaire qu'il écoute sur le port 
 nano ~/14/secondaire/postgresql.conf
 ```
 
-Et on lance l'instance secondaire avec pg_ctl.
+Et on lance l'instance secondaire avec pg_ctl:
+
+```
+/usr/pgsql-14/bin/pg_ctl -D /var/lib/pgsql/14/standby/ start
+```
