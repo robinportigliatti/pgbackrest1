@@ -34,14 +34,6 @@ En tant que postgres:
 
 Nous avons maintenant configuré simplement notre pgbackrest, regarder le contenu de `/var/lib/pgbackrest` et les dossiers enfants.
 
-Nous allons maintenant signifier à pgbackrest de créer la stanza.
-
-```
-pgbackrest --stanza=main stanza-create
-```
-
-Regarder le contenu de `var/lib/pgbackrest` et ses enfants, que constatez-vous ?
-
 Configurer l'`achive_command` et `archive_mode` de votre instance comme suit:
 
 ```
@@ -51,6 +43,20 @@ wal_level = replica
 ```
 
 Redémarrer l'instance.
+
+Nous allons maintenant signifier à pgbackrest de créer la stanza.
+
+```
+pgbackrest --stanza=main stanza-create
+```
+
+Vérifier la stanza:
+
+```
+pgbackrest --stanza=main check
+```
+
+Regarder le contenu de `var/lib/pgbackrest` et ses enfants, que constatez-vous ?
 
 Lancer un backup FULL avec la commande backup de pgbackrest:
 
