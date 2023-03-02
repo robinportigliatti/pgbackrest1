@@ -1,4 +1,4 @@
-pour cette exemple il faudra que vous supprimiez tous les tablespaces sauf celui par défaut:
+pour cette exemple il faudra que vous supprimiez tous les tablespaces:
 
 Présentation de pgbackrest:
 
@@ -89,18 +89,25 @@ Pour créer un secondaire il faudra :
 Créer un PGDATA pour le secondaire:
 
 ```
-mkdir ~/14/standby
+mkdir ~/14/secondaire
 ```
 
 Création du slot de réplicaiton:
 
 ```
-
+psql -c "SELECT pg_create_physical_replication_slot('secondaire');"
 ```
 
-
+On lance la restauration:
 
 ```
-pgbackrest --stanza=main --delta --type=standby --recovery-option=primary_conninfo=port=5432 --recovery-option=primary_slot_name=secondaire --recovery-option=recovery_target_timeline=latest --pg1-path=/var/lib/pgsql/14/standby restore
+pgbackrest --stanza=main --delta --type=standby --recovery-option=primary_conninfo=port=5432 --recovery-option=primary_slot_name=secondaire --recovery-option=recovery_target_timeline=latest --pg1-path=/var/lib/pgsql/14/secondaire restore
 ```
 
+Puis on modifie le port d'écoute de notre secondaire qu'il écoute sur le port `5433`:
+
+```
+nano ~/14/secondaire/postgresql.conf
+```
+
+Et on lance l'instance secondaire avec pg_ctl.
