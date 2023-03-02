@@ -1,4 +1,4 @@
-pour cette exemple il faudra que vous supprimiez tous les tablespaces:
+pour cette exemple il faudra que vous supprimiez tous les tablespaces sauf celui par défaut:
 
 Présentation de pgbackrest:
 
